@@ -1,23 +1,23 @@
 
 const express = require('express')
-
 const app = express()
 
-const Post = require('./models/Posts')
 
 require('dotenv').config()
 
 const cors = require('cors')
 
-
 const PORT = process.env.PORT
 
+const Post = require('./models/Posts')
 
-app.use(cors())
 
 app.use(express.json())
 
- 
+app.use(cors())
+
+
+
 
 // Criar um novo post.
 app.post('/create_post', async (req, res) => {
@@ -28,7 +28,7 @@ app.post('/create_post', async (req, res) => {
         const post = await Post.create({ title, content })
         res.send(post)
 
-        res.send(`Título: ${title} <br/> Conteúdo: ${content}`)
+        res.send(`Título: ${title}  Conteúdo: ${content}`)
 
     } catch (err) {
         res.status(400).send(err)
